@@ -23,6 +23,8 @@ def build_reply():
     line = " ".join(REPLY.split())
     if not line:
         raise ValueError("reply is empty")
+    if "\n" in line or "\r" in line:
+        raise ValueError("reply must be a single line")
     if len(line) > MAX_CHARS:
         raise ValueError(f"reply is {len(line)} chars, over the {MAX_CHARS} limit")
     return line
